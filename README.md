@@ -13,10 +13,16 @@ Services and emergency planning
 
 # Tech/framework used
 
+Built with
+Express, Node js, 
+MongoDB, cloude Mlab
+Angular 8
+typeScript
+circleCi
+
+
 
 ## Development
-Built with
-Express, Node js, MongoDB, Angular 
 
 We use `node` version `10.0`
 
