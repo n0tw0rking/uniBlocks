@@ -13,12 +13,12 @@ Services and emergency planning
 
 # Tech/framework used
 
-Built with
-Express, Node js, 
-MongoDB, cloude Mlab
-Angular 8
-typeScript
-circleCi
+- Built with
+- Express, Node js, 
+- MongoDB, cloude Mlab
+- Angular 8
+- typeScript
+- circleCi
 
 
 
