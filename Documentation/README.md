@@ -39,7 +39,7 @@ If you don’t havee any of these tools installed already, you will need to:
 You will need to clone source code of client GitHub repository. To do this open console and execute following lines:
 
 ```shell
-git clone https://github.com/Ogui99/Flow-backend.git
+git clone https://github.com/n0tw0rking/Back-end
 ```
 ### Installing Node Modules
 You will need to clone source code of client GitHub repository. To do this open console and execute following lines:
@@ -85,23 +85,23 @@ Flow is in developmennt process
 Here is the folder structure
 
 ```text
-├───config
-|
-├───Controllers
-|
-├───models
-|
-├───operations
-|
-├───public
-|
-├───routes
-│   └───api
-├───Services
-│  
-├───uploads
-|
-├───views
+ ├public
+ |  └───angular
+ └src
+    ├───config
+    |
+    ├───Controllers
+    |
+    ├───models
+    |
+    ├───operations
+    |    
+    ├───api
+    │   └───routes/middlewares
+    ├───Services
+    │  
+    ├───uploads
+    |    
 ```
 
 ## Bugs and feature requests
@@ -124,11 +124,11 @@ Moreover, all Javascript should conform to the [Code Guide](), maintained by [st
 
 ## Thanks
 
-Thanks to the team
+Thanks to RBK team
 
 ## Copyright and license
 
-Enjoy :metal:
+n0tw0rking team
 
 
 

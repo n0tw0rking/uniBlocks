@@ -1,12 +1,22 @@
-# uniBlock   architecture 🛡️
+# UniBlock 
 
-Public Local managment that helps you to orgnize your home and neighbour with other residence for better live quality 
+Public Local managment that helps you to orgnize your home and neighbour with other residence for better live quality.
+and connect you with your daily life need regards your living place and the services you need in your nighbour and also be aware of any thing happends in your building block shared work between the nighbous any event that come up.
+
+# Motivation
+
+Engaged communities
+Community Organisations
+Share with your neighbours
+Services and emergency planning
 
 
-The API by itself doesn't do anything fancy, it's just a user CRUD with authentication capabilities.
-Maybe we can transform this into something useful, a more advanced example, just open an issue and let's discuss the future of the repo.
+# Tech/framework used
+
 
 ## Development
+Built with
+Express, Node js, MongoDB, Angular 
 
 We use `node` version `10.0`
 
