@@ -19,6 +19,7 @@ MongoDB, cloude Mlab
 Angular 8
 typeScript
 circleCi
+.
 
 
 
