@@ -18,10 +18,13 @@ shares work between you and the neighbors at any event that comes up.
 
  Built with :
 - Express, Node js, 
-- MongoDB, cloude Mlab
+- MongoDB, Cloude Mlab
 - Angular 8
 - typeScript
-- circleCi
+- CircleCi
+- Jasmin Karma Angular / Jest Node
+- Mobile Development Progressive Web Apps
+- GrapQl
 
 
 
@@ -93,6 +96,6 @@ Project is in planning phase.
    Angular is inside the public folder, it has a separate architect, its own package.json file and read me file  
    
 ## Contact
-created by @AdamMomen, @mohamed-fared, @OmarBara, and @psktcsharp
+created by @OmarBara, @mohamed-fared, @AdamMomen and @psktcsharp
 
   
