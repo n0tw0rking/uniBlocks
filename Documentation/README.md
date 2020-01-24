@@ -84,24 +84,50 @@ Flow is in developmennt process
 
 Here is the folder structure
 
-```text
- ├public
- |  └───angular
- └src
-    ├───config
-    |
-    ├───Controllers
-    |
-    ├───models
-    |
-    ├───operations
-    |    
-    ├───api
-    │   └───routes/middlewares
-    ├───Services
-    │  
-    ├───uploads
-    |    
+```|-- app
+     |-- puplic
+       |-- angular 
+            |-- modules
+            |-- home
+                |-- [+] components
+                |-- [+] pages
+                |-- home-routing.module.ts
+                |-- home.module.ts
+            |-- core
+            |-- [+] authentication
+            |-- [+] footer
+            |-- [+] guards
+            |-- [+] http
+            |-- [+] interceptors
+            |-- [+] mocks
+            |-- [+] services
+            |-- [+] header
+            |-- core.module.ts
+            |-- ensureModuleLoadedOnceGuard.ts
+            |-- logger.service.ts
+            |
+            |-- shared
+                |-- [+] components
+                |-- [+] directives
+                |-- [+] pipes
+                |-- [+] models
+            |
+            |-- [+] configs
+                |-- [+] components
+                |-- [+] pages
+                |-- home-routing.module.ts
+                |-- home.module.ts
+     |-- src //node
+       |-- [+] config
+       |-- [+] controllers
+       |-- [+] models
+       |-- [+] operation
+       |-- [+] api
+                |-- [+] routers
+                |-- [+] middelwares
+       |-- [+] services
+       |-- [+] header
+      
 ```
 
 ## Bugs and feature requests
