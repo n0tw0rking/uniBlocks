@@ -5,10 +5,10 @@ and connect you with your daily life need regards your living place and the serv
 
 # Motivation
 
-Engaged communities
-Community Organisations
-Share with your neighbours
-Services and emergency planning
+- Engaged communities
+- Community Organisations
+- Share with your neighbours
+- Services and emergency planning
 
 
 # Tech/framework used
@@ -50,18 +50,20 @@ It uses nodemon for livereloading :peace-fingers:
 
 # API Validation
  
- By using celebrate the req.body schema becomes clary defined at route level, so even frontend devs can read what an API endpoint expects without need to writting a documentation that can get outdated quickly.
+ By using try catch and async methode to handel internal routing level, so even frontend devs can read what an API endpoint expects without need to writting a documentation that can get outdated quickly.
+ and this is example of adding a new admin request at the routing .
 
  ```js
- route.post('/signup', 
-  celebrate({
-    body: Joi.object({
-      name: Joi.string().required(),
-      email: Joi.string().required(),
-      password: Joi.string().required(),
-    }),
-  }),
-  controller.signup)
+ router.post('/', async (req, res) => {
+    try{
+        const admin = new Admin(req.body);
+        await admin.save();
+        const token = await admin.generateAuthToken();
+        res.status(201).json({admin, token});
+    }catch(err){
+        res.status(400).send(err);
+    }
+});
  ```
 
  **Example error**
@@ -79,7 +81,7 @@ It uses nodemon for livereloading :peace-fingers:
 # Roadmap
 - [ ] API Validation layer 
 - [ ] Unit tests examples
-- [ ] The logging _'layer'_ 
+- [ ] The logging 
 - [ ] Add ageda dashboard
 - [ ] Continuous integration with CircleCI 
 - [ ] Deploys script and docs with Heroku
