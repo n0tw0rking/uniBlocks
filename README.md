@@ -17,14 +17,14 @@ shares work between you and the neighbors at any event that comes up.
 # Tech/framework used
 
  Built with :
-- Express, Node js, 
+- Express, Node js 
 - MongoDB, Cloude Mlab
 - Angular 8
 - typeScript
 - CircleCi
-- Jasmin Karma Angular / Jest Node
-- Mobile Development Progressive Web Apps
-- GrapQl
+- Jasmin Karma Angular / Jest Node
+- Mobile Development Progressive Web Apps
+- GrapQl
 
 
 
@@ -97,5 +97,3 @@ Project is in planning phase.
    
 ## Contact
 created by @OmarBara, @mohamed-fared, @AdamMomen and @psktcsharp
-
-  
