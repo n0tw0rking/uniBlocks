@@ -1,6 +1,6 @@
 # UniBlock 
 
-Public Local managment that helps you to orgnize your home and neighbour with other residence for better live quality.
+Public Local managment that helps you to organize your home and neighbour with other residence for better live quality.
 and connect you with your daily life need regards your living place and the services you need in your nighbour and also be aware of any thing happends in your building block shared work between the nighbous any event that come up.
 
 # Motivation
