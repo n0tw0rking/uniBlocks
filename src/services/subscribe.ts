@@ -4,9 +4,9 @@ import events from '../subscribers/events';
 import { EventDispatcher, EventDispatcherInterface } from '../decorators/eventDispatcher';
 
 @Service()
-export default class Subscribe {
+export default class SubscribeService {
   constructor(
-    @Inject('subscribtionModel') private subcribtionModel: Models.SubscribtionModel,
+    @Inject('subscribtionModel') private subscribtionModel: Models.SubscribtionModel,
     @Inject('logger') private logger,
     @EventDispatcher() private eventDispatcher: EventDispatcherInterface,
   ) {}
@@ -15,7 +15,7 @@ export default class Subscribe {
     try {
       this.logger.silly('createing a subscribtion');
       this.logger.silly('Creating subcribtion db record');
-      const subcribtionRecord = await this.subcribtionModel.create({
+      const subcribtionRecord = await this.subscribtionModel.create({
         ...subscribtionInputDTO,
       });
       if (!subcribtionRecord) {

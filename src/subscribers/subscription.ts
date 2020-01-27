@@ -10,7 +10,7 @@ export default class SubscriptionSubscriber {
   public onSubscriptionCreate({ _id }: Partial<ISubscribtion>) {
     const Logger = Container.get('logger');
     try {
-      const SubscriptionModel = Container.get('SubscriptionModel') as mongoose.Model<ISubscribtion & mongoose.Document>;
+      const SubscriptionModel = Container.get('subscriptionModel') as mongoose.Model<ISubscribtion & mongoose.Document>;
       SubscriptionModel.create({});
     } catch (e) {
       Logger.error(`🔥 Error on event ${events.subscribtion.create}: %o`, e);

@@ -7,6 +7,7 @@ export interface ISubscribtion {
 }
 export interface ISubscribtionInputDTO {
   name: string;
+  //user id
   user: string;
   balance: string;
 }

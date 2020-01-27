@@ -8,7 +8,7 @@ const route = Router();
 export default (app: Router) => {
   app.use('/subs', route);
   route.post(
-    '/get',
+    '/create',
     celebrate({
       body: Joi.object({
         name: Joi.string().required(),

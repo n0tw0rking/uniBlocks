@@ -7,7 +7,7 @@ declare global {
   namespace Express {
     export interface Request {
       currentUser: IUser & Document;
-      subscription: ISubscribtion & Document;
+      // subscription: ISubscribtion & Document;
     }
   }
 
