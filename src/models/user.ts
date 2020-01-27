@@ -19,7 +19,7 @@ const User = new mongoose.Schema(
     password: String,
 
     salt: String,
-
+    // here we want to set the user to be a user admin
     role: {
       type: String,
       default: 'user',
