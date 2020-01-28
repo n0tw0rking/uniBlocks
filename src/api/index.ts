@@ -3,6 +3,7 @@ import auth from './routes/auth';
 import user from './routes/user';
 import subscribtion from './routes/subscribtion';
 import agendash from './routes/agendash';
+import service from './routes/service';
 
 // guaranteed to get dependencies
 export default () => {
@@ -11,6 +12,6 @@ export default () => {
   user(app);
   agendash(app);
   subscribtion(app);
-
+  service(app);
   return app;
 };
