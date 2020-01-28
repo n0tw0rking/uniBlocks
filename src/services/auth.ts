@@ -36,9 +36,9 @@ export default class AuthService {
         throw new Error('User cannot be created');
       }
       this.logger.silly('Sending welcome email');
-      await this.mailer.SendWelcomeEmail(userRecord);
+      // await this.mailer.SendWelcomeEmail(userRecord);
 
-      this.eventDispatcher.dispatch(events.user.signUp, { user: userRecord });
+      // this.eventDispatcher.dispatch(events.user.signUp, { user: userRecord });
 
       /**
        * @TODO This is not the best way to deal with this

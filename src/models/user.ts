@@ -32,6 +32,18 @@ const User = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
+    isSuperAdmin: {
+      type: Boolean,
+      default: false,
+    },
+    subcribtions: {
+      type: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Subscribtion',
+        },
+      ],
+    },
   },
   { timestamps: true },
 );

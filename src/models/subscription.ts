@@ -9,11 +9,11 @@ const Subscription = new mongoose.Schema({
   },
   balance: {
     type: mongoose.Schema.Types.ObjectId,
-    $ref: 'Balance',
+    ref: 'Balance',
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    $ref: 'User',
+    ref: 'User',
   },
 });
 export default mongoose.model<ISubscribtion & mongoose.Document>('Subscribtion', Subscription);
