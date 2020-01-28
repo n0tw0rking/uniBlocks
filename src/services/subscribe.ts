@@ -10,7 +10,6 @@ export default class SubscribeService {
     @Inject('logger') private logger,
     @EventDispatcher() private eventDispatcher: EventDispatcherInterface,
   ) {}
-  // create a public function CREATE
   public async create(subscribtionInputDTO: ISubscribtionInputDTO): Promise<{ subscription: ISubscribtion }> {
     try {
       this.logger.silly('createing a subscribtion');
@@ -22,7 +21,8 @@ export default class SubscribeService {
         throw new Error('subscription cannot be created');
       }
       // this.eventDispatcher.dispatch(events.subscribtion.create, { subscribtion: subcribtionRecord });
-      const subscription = subcribtionRecord.toObject();
+      const { subscription } = subcribtionRecord.toObject();
+      const user = subcribtionRecord.user;
 
       return { subscription };
     } catch (e) {

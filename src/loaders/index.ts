@@ -25,8 +25,7 @@ export default async ({ expressApp }) => {
   };
   const subscribtionModel = {
     name: 'subscribtionModel',
-    // Notice the require syntax and the '.default'
-    model: require('../models/subscription').default,
+    model: require('../models/subscribtion').default,
   };
   const serviceModel = {
     name: 'serviceModel',

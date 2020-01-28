@@ -4,6 +4,8 @@ import SubscribeService from '../../services/subscribe';
 import { celebrate, Joi } from 'celebrate';
 import { ISubscribtionInputDTO } from '../../interfaces/ISubscribtion';
 const route = Router();
+import { IUser } from '../../interfaces/IUser';
+import mongoose from 'mongoose';
 
 export default (app: Router) => {
   app.use('/subs', route);
@@ -22,6 +24,16 @@ export default (app: Router) => {
       try {
         const SubscribeServiceInstance = Container.get(SubscribeService);
         const { subscription } = await SubscribeServiceInstance.create(req.body as ISubscribtionInputDTO);
+        const UserModel = Container.get('userModel') as mongoose.Model<IUser & mongoose.Document>;
+        const id = { id: subscription._id };
+        console.log(subscription);
+        UserModel.findByIdAndUpdate(
+          { subscription },
+          {
+            $push: { subcribtions: { id } },
+          },
+          { new: true },
+        );
         return res.status(201).json({ subscription });
       } catch (e) {
         logger.error('🔥 error: %o', e);

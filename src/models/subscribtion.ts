@@ -1,7 +1,7 @@
 import { ISubscribtion } from '../interfaces/ISubscribtion';
 import mongoose from 'mongoose';
 
-const Subscription = new mongoose.Schema({
+const Subscribtion = new mongoose.Schema({
   name: {
     type: String,
     required: [true, 'Please enter a full name'],
@@ -13,7 +13,7 @@ const Subscription = new mongoose.Schema({
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    $ref: 'User',
   },
 });
-export default mongoose.model<ISubscribtion & mongoose.Document>('Subscribtion', Subscription);
+export default mongoose.model<ISubscribtion & mongoose.Document>('Subscribtion', Subscribtion);

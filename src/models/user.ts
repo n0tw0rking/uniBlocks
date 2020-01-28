@@ -36,14 +36,13 @@ const User = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    subcribtions: {
-      type: [
-        {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: 'Subscribtion',
-        },
-      ],
-    },
+    subcribtions: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+
+        ref: 'Subscribtion',
+      },
+    ],
   },
   { timestamps: true },
 );
