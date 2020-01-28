@@ -29,5 +29,12 @@ export default class SubscribeService {
       this.logger.error(e);
       throw e;
     }
+    // public async get(subscribtionInputDTO: ISubscribtionInputDTO): Promise<{ subscription: ISubscribtion }> {
+    //   try{
+
+    //   }
+    //   catch{
+
+    //   }
   }
 }
