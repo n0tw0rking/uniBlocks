@@ -3,6 +3,7 @@ const Block = require('../db/models/block');
 const Message = require('../db/models/message');
 const Balance = require('../db/models/balance');
 const Subscription = require('../db/models/subscription');
+const Service = require('../db/models/service');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 module.exports = {
@@ -81,6 +82,11 @@ module.exports = {
       .catch(err => {
         throw err;
       });
+  },
+  // list all the service in the database
+  service: async () => {
+    const service = await Service.find();
+    return service;
   },
   message: async () => {
     try {
@@ -170,6 +176,7 @@ module.exports = {
       await balance.save();
       const user = await User.findOne({ email: args.email });
       subscription.user = user._id;
+      user.userSubscription.push(subscription._id);
     } catch (err) {
       console.log(err);
     }
@@ -177,6 +184,16 @@ module.exports = {
       return await subscription.save();
     } catch (err) {
       throw new Error('not allowed ,duplicate name');
+    }
+  },
+  createService: async args => {
+    const service = new Service({
+      name: args.name,
+    });
+    try {
+      return await service.save();
+    } catch (err) {
+      console.log(err);
     }
   },
 };

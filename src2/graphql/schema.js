@@ -49,22 +49,31 @@ module.exports = buildSchema(`
         name : String!
         balance : Balance!
         user : User !
+    }
+    type Service {
+        _id : ID! 
+        name : String!
 
     }
-    
     type RootQuery {
         oneUser:User!
         login(userInput :UserInput) :  AuthData!
         message: [Message!]!
         subscription(name:String!) : Subscription! 
+        service:[Service!]!
     }
     type MutationQuery{
+
         createUser(userInput :UserInput ): User!
         createBlock(blockInput : BlockInput) : Block! 
         createMessage(messageInput : MessageInput):Message!
-        addBalance(value : Float!): Balance!
+        createService (name :String!):Service!
         createSub(name :String!,email:String!) : Subscription!
-        addSub (email:String!):User!
+        addSub(email:String!):User!
+        addBalance(value : Float!): Balance!
+        addSerToSub(name:String!):Service!
+
+
         }
     schema {
         query : RootQuery,
