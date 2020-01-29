@@ -1,0 +1,16 @@
+{
+  "presets": ["es2015"]
+}
+// {
+//   "presets": [
+//     [
+//       "@babel/preset-env",
+//       {
+//         "targets": {
+//           "node": "10"
+//         }
+//       }
+//     ],
+//     "@babel/preset-react"
+//   ]
+// }

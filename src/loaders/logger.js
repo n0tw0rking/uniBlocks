@@ -1,6 +1,5 @@
-import * as winston from 'winston';
-// import * as winston from 'winston';
-import config from '../config';
+const winston = require('winston');
+const config = require('../config');
 
 const transports = [
   new winston.transports.Console({
@@ -33,4 +32,4 @@ const LoggerInstance = winston.createLogger({
   transports,
 });
 
-export default LoggerInstance;
+module.exports = logger = LoggerInstance;

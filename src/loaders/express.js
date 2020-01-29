@@ -1,8 +1,8 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import cors from 'cors';
-import routes from '../api';
-import config from '../config';
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const routes = require('../api');
+const config = require('../config');
 export default ({ app }) => {
   /**
    * Health Check endpoints

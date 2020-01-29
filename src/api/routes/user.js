@@ -11,17 +11,17 @@ export default app => {
   route.get('/me', middlewares.isAuth, middlewares.attachCurrentUser, (req, res) => {
     return res.json({ user: req.currentUser }).status(200);
   });
-
   route.get('/:id', async (req, res, next) => {
     const logger = Container.get('logger');
     try {
-      const UserModel = Container.get('userModel');
-      const userRecord = await UserModel.findById(req.params.id).populate('subcribtions');
+      const UserModel = Container.get('userModel') as mongoose.Model<IUser & mongoose.Document>;
+      console.log(req.params.id);
+      const userRecord = await UserModel.findById(req.params.id).populate('Subscribtion');
       if (!userRecord) {
         return res.sendStatus(401);
       }
-      const subcribtions = userRecord.toObject();
-      res.json({ subcribtions }).status(200);
+      const subServices = userRecord.toObject();
+      res.json({ subServices }).status(200);
     } catch (e) {
       logger.error('🔥 Error attaching user to req: %o', e);
     }
