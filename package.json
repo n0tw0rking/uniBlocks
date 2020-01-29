@@ -17,6 +17,7 @@
   "author": "Uni Blocks Team",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^3.0.7",
     "body-parser": "^1.19.0",
     "celebrate": "^9.1.0",
     "cors": "^2.8.5",

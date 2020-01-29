@@ -1,18 +1,18 @@
-import mongoose from 'mongoose';
+const mongoose = require("mongoose");
 
 const User = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: [true, 'Please enter a full name'],
-      index: true,
+      required: [true, "Please enter a full name"],
+      index: true
     },
 
     email: {
       type: String,
       lowercase: true,
       unique: true,
-      index: true,
+      index: true
     },
 
     password: String,
@@ -20,18 +20,17 @@ const User = new mongoose.Schema(
     salt: String,
     role: {
       type: String,
-      default: 'user',
+      default: "user"
     },
     isAdmin: {
       type: Boolean,
-      default: false,
+      default: false
     },
     isUser: {
       type: Boolean,
-      default: true,
-    },
+      default: true
+    }
   },
-  { timestamps: true },
+  { timestamps: true }
 );
-
-export default mongoose.model('User', User);
+module.exports = mongoose.model("User", User);
