@@ -36,8 +36,15 @@ module.exports = {
     // }
     try {
       //need change the _id by the req.userId
-      const user = await User.findById({ _id: '5e2f11a306383525e580d2bc' }).populate('userMesg');
-      //   console.log(user);
+      const user = await User.findById({ _id: '5e315ae504442446af8ed9cc' })
+        .populate('userMesg')
+        .populate({
+          path: 'userSubscription',
+          populate: {
+            path: 'block',
+          },
+        });
+      console.log(user);
       return user;
     } catch (err) {
       console.log(err);
@@ -58,9 +65,9 @@ module.exports = {
   },
   // create user /////
   createUser: (args, req) => {
-    if (!req.isAuth) {
-      throw new Error('Unauthenticated');
-    }
+    // if (!req.isAuth) {
+    //   throw new Error('Unauthenticated');
+    // }
     return User.findOne({ email: args.userInput.email })
       .then(user => {
         if (user) {
@@ -155,6 +162,7 @@ module.exports = {
       console.log(err);
     }
   },
+  //this func add user to Subscription ***** need to work on it more
   addSub: async args => {
     const user = await User.findOne({ email: args.email });
     user.userSubscription.push();
@@ -165,18 +173,30 @@ module.exports = {
     const balance = new Balance({
       value: 0,
     });
-
     const subscription = new Subscription({
-      name: args.name,
+      name: args.subInput.name,
       balance: balance._id,
     });
+    try {
+      // serach for the block name to be added to the subscription of the user
+      const block = await Block.findOne({ name: args.subInput.block });
+      subscription.block = block._id;
+      block.userSubscription.push(subscription._id);
+      await block.save();
+    } catch (err) {
+      console.log(err);
+    }
+
     try {
       //find user info by using the email provided in the args the save his _id to the subscripton
       //tbale
       await balance.save();
-      const user = await User.findOne({ email: args.email });
+      const user = await User.findOne({ email: args.subInput.email });
+      console.log(user);
       subscription.user = user._id;
+
       user.userSubscription.push(subscription._id);
+      await user.save();
     } catch (err) {
       console.log(err);
     }

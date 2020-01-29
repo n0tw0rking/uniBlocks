@@ -9,6 +9,12 @@ const schema = new Schema({
   location: {
     type: String,
   },
+  userSubscription: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Subscription',
+    },
+  ],
 });
 
 module.exports = mongoose.model('Block', schema);

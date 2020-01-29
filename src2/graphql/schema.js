@@ -12,15 +12,19 @@ module.exports = buildSchema(`
         location:String 
     }
     input MessageInput {
-        message : String!
-        
-        
+        message : String!   
+    }
+    input SubInput{
+        name :String!
+        email:String!
+        block:String!
     }
     type User {
     _id : ID!
     email : String!
     password : String 
     userMesg : [Message!]!
+    userSubscription :[Subscription!]!
 
     }
     
@@ -28,6 +32,7 @@ module.exports = buildSchema(`
         _id:ID!
         name : String!
         location :String 
+        userSubscription:[Subscription!]!
     }
     type Message{
         _id:ID!
@@ -49,6 +54,7 @@ module.exports = buildSchema(`
         name : String!
         balance : Balance!
         user : User !
+        block : Block!
     }
     type Service {
         _id : ID! 
@@ -68,7 +74,7 @@ module.exports = buildSchema(`
         createBlock(blockInput : BlockInput) : Block! 
         createMessage(messageInput : MessageInput):Message!
         createService (name :String!):Service!
-        createSub(name :String!,email:String!) : Subscription!
+        createSub(subInput:SubInput) : Subscription!
         addSub(email:String!):User!
         addBalance(value : Float!): Balance!
         addSerToSub(name:String!):Service!
