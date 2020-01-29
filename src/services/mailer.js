@@ -3,11 +3,9 @@ import { IUser } from '../interfaces/IUser';
 
 @Service()
 export default class MailerService {
-  constructor(
-    @Inject('emailClient') private emailClient
-  ) { }
+  constructor(@Inject('emailClient') emailClient) {}
 
-  public async SendWelcomeEmail(email) {
+  async SendWelcomeEmail(email) {
     /**
      * @TODO Call Mailchimp/Sendgrid or whatever
      */
@@ -16,13 +14,13 @@ export default class MailerService {
       from: 'Excited User <me@samples.mailgun.org>',
       to: email, //your email address
       subject: 'Hello',
-      text: 'Testing some Mailgun awesomness!'
+      text: 'Testing some Mailgun awesomness!',
     };
 
     this.emailClient.messages().send(data);
     return { delivered: 1, status: 'ok' };
   }
-  public StartEmailSequence(sequence: string, user: Partial<IUser>) {
+  StartEmailSequence(sequence, user) {
     if (!user.email) {
       throw new Error('No email provided');
     }

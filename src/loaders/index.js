@@ -1,10 +1,8 @@
-import expressLoader from './express';
-import dependencyInjectorLoader from './dependencyInjector';
-import mongooseLoader from './mongoose';
-import jobsLoader from './jobs';
-import Logger from './logger';
-//We have to import at least all the events once so they can be triggered
-import './events';
+const expressLoader = require('./express');
+const dependencyInjectorLoader = require('./dependencyInjector');
+const mongooseLoader = require('./mongoose');
+const jobsLoader = require('./jobs');
+const Logger = require('./logger');
 
 export default async ({ expressApp }) => {
   const mongoConnection = await mongooseLoader();

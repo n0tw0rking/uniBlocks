@@ -1,4 +1,3 @@
-import { ISubService } from '../interfaces/ISubService';
 import mongoose from 'mongoose';
 
 const SubscriptionService = new mongoose.Schema({
@@ -13,4 +12,4 @@ const SubscriptionService = new mongoose.Schema({
     $ref: 'subscribtions',
   },
 });
-export default mongoose.model<ISubService & mongoose.Document>('SubscriptionService', SubscriptionService);
+export default mongoose.model('SubscriptionService', SubscriptionService);

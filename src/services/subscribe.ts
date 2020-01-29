@@ -22,8 +22,6 @@ export default class SubscribeService {
       }
       // this.eventDispatcher.dispatch(events.subscribtion.create, { subscribtion: subcribtionRecord });
       const { subscription } = subcribtionRecord.toObject();
-      const user = subcribtionRecord.user;
-
       return { subscription };
     } catch (e) {
       this.logger.error(e);

@@ -1,11 +1,9 @@
-import 'reflect-metadata'; // We need this in order to use @Decorators
+const config = require('./config');
 
-import config from './config';
+const express = require('express');
 
-import express from 'express';
-
-import Logger from './loaders/logger';
-
+const Logger = require('./loaders/logger');
+console.log(config);
 async function startServer() {
   const app = express();
 

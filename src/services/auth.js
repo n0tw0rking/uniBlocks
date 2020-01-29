@@ -1,23 +1,14 @@
-import { Service, Inject } from 'typedi';
-import jwt from 'jsonwebtoken';
-import MailerService from './mailer';
+const jwt = require('jsonwebtoken'),
+  MailerService = require('./mailer');
 import config from '../config';
 import argon2 from 'argon2';
 import { randomBytes } from 'crypto';
 import { IUser, IUserInputDTO } from '../interfaces/IUser';
 import { EventDispatcher, EventDispatcherInterface } from '../decorators/eventDispatcher';
 import events from '../subscribers/events';
-
-@Service()
+const { UserModel } = require('../../');
 export default class AuthService {
-  constructor(
-    @Inject('userModel') private userModel: Models.UserModel,
-    private mailer: MailerService,
-    @Inject('logger') private logger,
-    @EventDispatcher() private eventDispatcher: EventDispatcherInterface,
-  ) {}
-
-  public async SignUp(userInputDTO: IUserInputDTO): Promise<{ user: IUser; token: string }> {
+  async SignUp(userInputDTOd) {
     try {
       const salt = randomBytes(32);
 
@@ -56,7 +47,7 @@ export default class AuthService {
     }
   }
 
-  public async SignIn(email: string, password: string): Promise<{ user: IUser; token: string }> {
+  async SignIn(email, password) {
     const userRecord = await this.userModel.findOne({ email });
     if (!userRecord) {
       throw new Error('User not registered');
@@ -83,7 +74,7 @@ export default class AuthService {
     }
   }
 
-  private generateToken(user) {
+  generateToken(user) {
     const today = new Date();
     const exp = new Date(today);
     exp.setDate(today.getDate() + 60);

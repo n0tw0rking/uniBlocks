@@ -1,28 +1,27 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { Container } from 'typedi';
-import ServiceManager from '../../services/service';
+import ServiceManager from '../../services/subscribtionService';
 import { celebrate, Joi } from 'celebrate';
-import { IService } from '../../interfaces/IService';
+import { ISubService } from '../../interfaces/ISubService';
 const route = Router();
 
-export default (app: Router) => {
-  app.use('/service', route);
+export default app => {
+  app.use('/sub-service', route);
   route.post(
     '/create',
     celebrate({
       body: Joi.object({
-        name: Joi.string().required(),
-        price: Joi.required(),
-        // HERE ADAM YOU NEED TO ENTER THE PARAMETER TO BE ENTERED
+        service: Joi.string().required(),
+        subscribtion: Joi.string().required(),
       }),
     }),
-    async (req: Request, res: Response, next: NextFunction) => {
+    async (req, res, next) => {
       const logger = Container.get('logger');
       logger.debug('Calling create a subcripton endpoint with body: %o', req.body);
       try {
         const ServiceMngInstance = Container.get(ServiceManager);
-        const { service } = await ServiceMngInstance.create(req.body as IService);
-        return res.status(201).json({ service });
+        const { subService } = await ServiceMngInstance.create(req.body);
+        return res.status(201).json({ subService });
       } catch (e) {
         logger.error('🔥 error: %o', e);
         return next(e);

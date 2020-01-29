@@ -7,7 +7,7 @@ import { celebrate, Joi } from 'celebrate';
 
 const route = Router();
 
-export default (app: Router) => {
+export default app => {
   app.use('/auth', route);
 
   route.post(
@@ -19,12 +19,12 @@ export default (app: Router) => {
         password: Joi.string().required(),
       }),
     }),
-    async (req: Request, res: Response, next: NextFunction) => {
+    async (req, res, next) => {
       const logger = Container.get('logger');
       logger.debug('Calling Sign-Up endpoint with body: %o', req.body);
       try {
         const authServiceInstance = Container.get(AuthService);
-        const { user, token } = await authServiceInstance.SignUp(req.body as IUserInputDTO);
+        const { user, token } = await authServiceInstance.SignUp(req.body);
         return res.status(201).json({ user, token });
       } catch (e) {
         logger.error('🔥 error: %o', e);
@@ -41,7 +41,7 @@ export default (app: Router) => {
         password: Joi.string().required(),
       }),
     }),
-    async (req: Request, res: Response, next: NextFunction) => {
+    async (req, next) => {
       const logger = Container.get('logger');
       logger.debug('Calling Sign-In endpoint with body: %o', req.body);
       try {
@@ -65,7 +65,7 @@ export default (app: Router) => {
    * emitted for the session and add it to a black list.
    * It's really annoying to develop that but if you had to, please use Redis as your data store
    */
-  route.post('/logout', middlewares.isAuth, (req: Request, res: Response, next: NextFunction) => {
+  route.post('/logout', middlewares.isAuth, (req, res, next) => {
     const logger = Container.get('logger');
     logger.debug('Calling Sign-Out endpoint with body: %o', req.body);
     try {

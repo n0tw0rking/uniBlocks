@@ -1,4 +1,3 @@
-import { IService } from '../interfaces/IService';
 import mongoose from 'mongoose';
 const Service = new mongoose.Schema({
   name: {
@@ -12,4 +11,4 @@ const Service = new mongoose.Schema({
     index: true,
   },
 });
-export default mongoose.model<IService & mongoose.Document>('Service', Service);
+export default mongoose.model('Service', Service);
