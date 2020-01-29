@@ -12,7 +12,7 @@ export default app => {
     celebrate({
       body: Joi.object({
         name: Joi.string().required(),
-        user: Joi.string().required(),
+        // HERE ADAM YOU NEED TO ENTER THE PARAMETER TO BE ENTERED
       }),
     }),
     async (req, res, next) => {
