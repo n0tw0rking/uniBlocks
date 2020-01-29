@@ -1,11 +1,13 @@
-import mongoose from 'mongoose';
-import { Db } from 'mongodb';
-import config from '../config';
+const mongoose = require(mongoose);
+const { config } = require("../config/index");
 
-export default async () => {
+const mongoose = async () => {
   const connection = await mongoose.connect(config.databaseURL, {
     useNewUrlParser: true,
-    useCreateIndex: true,
+    useCreateIndex: true
   });
   return connection.connection.db;
+};
+module.exports = {
+  mongoose
 };
