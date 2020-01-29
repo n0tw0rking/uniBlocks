@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const SubscriptionService = new mongoose.Schema({
+const SubService = new mongoose.Schema({
   service: {
     type: mongoose.Schema.Types.ObjectId,
     $ref: "services",
@@ -12,4 +12,4 @@ const SubscriptionService = new mongoose.Schema({
     $ref: "subscribtions"
   }
 });
-module.exports = mongoose.model("SubscriptionService", SubscriptionService);
+module.exports = mongoose.model("SubService", SubService);

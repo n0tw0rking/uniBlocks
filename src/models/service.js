@@ -1,5 +1,6 @@
-const mongoose = require("mongoose");
-const Service = new mongoose.Schema({
+const Schema = require("mongoose").Schema;
+
+const Service = new Schema({
   name: {
     type: String,
     required: [true, "Please enter a service name"],
