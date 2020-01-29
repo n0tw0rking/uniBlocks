@@ -2,9 +2,31 @@ const User = require('../db/models/user');
 const Block = require('../db/models/block');
 const Message = require('../db/models/message');
 const Balance = require('../db/models/balance');
+const Subscription = require('../db/models/subscription');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 module.exports = {
+  subscription: async args => {
+    //   const user = User.findOne({email:args.email})
+    try {
+      const subscription = await Subscription.findOne({ name: args.name })
+        .populate('balance')
+        .populate('user');
+      // .populate({
+      //   path: 'user',
+      //   populate: {
+      //     path: 'userMesg',
+      //     populate: {
+      //       path: 'sender', // i used this just practice to how deep i can populate
+      //     },
+      //   },
+      // });
+      console.log(subscription);
+      return subscription;
+    } catch (err) {
+      console.log(err);
+    }
+  },
   //this function to retrive one user information by his Id
   //when he is loged on
   oneUser: async (args, req) => {
@@ -12,8 +34,9 @@ module.exports = {
     //   throw new Error('Unauthenticated');
     // }
     try {
+      //need change the _id by the req.userId
       const user = await User.findById({ _id: '5e2f11a306383525e580d2bc' }).populate('userMesg');
-      console.log(user);
+      //   console.log(user);
       return user;
     } catch (err) {
       console.log(err);
@@ -124,6 +147,36 @@ module.exports = {
       return await balance.save();
     } catch (err) {
       console.log(err);
+    }
+  },
+  addSub: async args => {
+    const user = await User.findOne({ email: args.email });
+    user.userSubscription.push();
+    console.log(user);
+    return user;
+  },
+  createSub: async args => {
+    const balance = new Balance({
+      value: 0,
+    });
+
+    const subscription = new Subscription({
+      name: args.name,
+      balance: balance._id,
+    });
+    try {
+      //find user info by using the email provided in the args the save his _id to the subscripton
+      //tbale
+      await balance.save();
+      const user = await User.findOne({ email: args.email });
+      subscription.user = user._id;
+    } catch (err) {
+      console.log(err);
+    }
+    try {
+      return await subscription.save();
+    } catch (err) {
+      throw new Error('not allowed ,duplicate name');
     }
   },
 };

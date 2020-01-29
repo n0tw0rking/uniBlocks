@@ -43,17 +43,28 @@ module.exports = buildSchema(`
         _id : ID!
         value : Float!
     }
+
+    type Subscription {
+        _id : ID!
+        name : String!
+        balance : Balance!
+        user : User !
+
+    }
     
     type RootQuery {
         oneUser:User!
         login(userInput :UserInput) :  AuthData!
         message: [Message!]!
+        subscription(name:String!) : Subscription! 
     }
     type MutationQuery{
         createUser(userInput :UserInput ): User!
         createBlock(blockInput : BlockInput) : Block! 
         createMessage(messageInput : MessageInput):Message!
         addBalance(value : Float!): Balance!
+        createSub(name :String!,email:String!) : Subscription!
+        addSub (email:String!):User!
         }
     schema {
         query : RootQuery,

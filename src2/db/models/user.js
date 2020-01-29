@@ -16,6 +16,12 @@ const schema = new Schema({
       ref: 'Message',
     },
   ],
+  userSubscription: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Subscription',
+    },
+  ],
 });
 
 module.exports = mongoose.model('User', schema);
