@@ -1,13 +1,16 @@
-const mongoose = require(mongoose);
+const mongoose = require("mongoose");
 const { config } = require("../config/index");
 
-const mongoose = async () => {
-  const connection = await mongoose.connect(config.databaseURL, {
-    useNewUrlParser: true,
-    useCreateIndex: true
-  });
-  return connection.connection.db;
+const mongooseConnect = async () => {
+  await mongoose
+    .connect(config.databaseURL, {
+      useNewUrlParser: true,
+      useCreateIndex: true
+    })
+    .then(() => {
+      console.log("✌️ DB loaded and connected!");
+    });
 };
 module.exports = {
-  mongoose
+  mongooseConnect
 };
