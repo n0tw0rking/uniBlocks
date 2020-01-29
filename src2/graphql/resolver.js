@@ -7,12 +7,20 @@ const Service = require('../db/models/service');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 module.exports = {
-  subscription: async args => {
+  /*
+		find one oneSubscription and list his balance / user / block
+		by one query in grapgql
+		example for that 
+		query{subscription(name:"AAA"){ _id block{ _id name location}}}
+	*/
+
+  oneSubscription: async args => {
     //   const user = User.findOne({email:args.email})
     try {
       const subscription = await Subscription.findOne({ name: args.name })
         .populate('balance')
-        .populate('user');
+        .populate('user')
+        .populate('block');
       // .populate({
       //   path: 'user',
       //   populate: {
@@ -46,6 +54,15 @@ module.exports = {
         });
       console.log(user);
       return user;
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  oneBlock: async args => {
+    try {
+      const block = await Block.findOne({ name: args.name }).populate('userSubscription');
+      console.log(block);
+      return block;
     } catch (err) {
       console.log(err);
     }

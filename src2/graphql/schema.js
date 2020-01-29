@@ -65,8 +65,9 @@ module.exports = buildSchema(`
         oneUser:User!
         login(userInput :UserInput) :  AuthData!
         message: [Message!]!
-        subscription(name:String!) : Subscription! 
+        oneSubscription(name:String!) : Subscription! 
         service:[Service!]!
+        oneBlock(name:String!):Block!
     }
     type MutationQuery{
 
