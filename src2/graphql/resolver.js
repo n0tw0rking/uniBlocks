@@ -20,7 +20,8 @@ module.exports = {
       const subscription = await Subscription.findOne({ name: args.name })
         .populate('balance')
         .populate('user')
-        .populate('block');
+        .populate('block')
+        .populate('service');
       // .populate({
       //   path: 'user',
       //   populate: {
@@ -66,6 +67,10 @@ module.exports = {
     } catch (err) {
       console.log(err);
     }
+  },
+  oneService: async args => {
+    const service = await Service.findOne({ name: args.name }).populate('subscriptionId');
+    return service;
   },
   // login ////////
   login: async args => {
@@ -156,11 +161,11 @@ module.exports = {
 
     const message = new Message({
       message: args.messageInput.message,
-      sender: '5e2f11a306383525e580d2bc',
+      sender: '5e315ae504442446af8ed9cc',
     });
     try {
       /////
-      const user = await User.findById({ _id: '5e2f11a306383525e580d2bc' });
+      const user = await User.findById({ _id: '5e315ae504442446af8ed9cc' });
       user.userMesg.push(message._id);
       await user.save();
       ////////
@@ -186,6 +191,7 @@ module.exports = {
     console.log(user);
     return user;
   },
+  // this func create subscription by providing the block name and email of the user
   createSub: async args => {
     const balance = new Balance({
       value: 0,
@@ -229,6 +235,24 @@ module.exports = {
     });
     try {
       return await service.save();
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  //add service to subscription
+  addSerToSub: async args => {
+    const service = await Service.findOne({ name: args.serviceName });
+    const subscription = await Subscription.findOne({ name: args.subName });
+    service.subscriptionId.push(subscription._id);
+    subscription.service.push(service._id);
+    try {
+      await subscription.save();
+
+      try {
+        return await service.save();
+      } catch (err) {
+        console.log(err);
+      }
     } catch (err) {
       console.log(err);
     }

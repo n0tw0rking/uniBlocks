@@ -1,0 +1,50 @@
+
+**** create block *****
+
+mutation{
+createBlock(blockInput:{name:"A1",location:"Tripoli"}){
+  _id
+}
+}
+
+**** create service ******
+mutation{
+  createService(name:"water"){
+    _id
+  }
+}
+
+**** create subscription ****
+mutation{
+ createSub(subInput:{email:"m.faredsaleh",block:"A1",name:"AAA"}){
+  _id
+  name
+  block{
+    _id
+  }}}
+
+
+**** service query ****
+  query{
+  oneService(name:"water"){
+  _id
+  name
+  subscriptionId{
+  _id
+  name
+  user{
+  _id
+  }
+  block{
+  _id
+  }}}}
+
+
+      **** add service to already exsisting subscription ***
+    mutation{
+    addSerToSub(serviceName:"cleaning",subName:"CCC"){
+     _id
+     name
+     subscriptionId{
+    _id
+     }}}

@@ -55,11 +55,12 @@ module.exports = buildSchema(`
         balance : Balance!
         user : User !
         block : Block!
+        service :[Service!]!
     }
     type Service {
         _id : ID! 
         name : String!
-
+        subscriptionId:[Subscription!]!
     }
     type RootQuery {
         oneUser:User!
@@ -67,6 +68,7 @@ module.exports = buildSchema(`
         message: [Message!]!
         oneSubscription(name:String!) : Subscription! 
         service:[Service!]!
+        oneService(name:String!):Service!
         oneBlock(name:String!):Block!
     }
     type MutationQuery{
@@ -78,8 +80,8 @@ module.exports = buildSchema(`
         createSub(subInput:SubInput) : Subscription!
         addSub(email:String!):User!
         addBalance(value : Float!): Balance!
-        addSerToSub(name:String!):Service!
-
+        addSerToSub(serviceName:String!,subName:String!): Service!
+        
 
         }
     schema {

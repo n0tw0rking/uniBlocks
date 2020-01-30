@@ -18,6 +18,12 @@ const schema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Block',
   },
+  service: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Service',
+    },
+  ],
 });
 
 module.exports = mongoose.model('Subscription', schema);
