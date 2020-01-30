@@ -1,16 +1,14 @@
-import dotenv from 'dotenv';
+const dotenv = require("dotenv");
 
-// Set the NODE_ENV to 'development' by default
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+process.env.NODE_ENV = process.env.NODE_ENV || "development";
 
 const envFound = dotenv.config();
 if (!envFound) {
   // This error should crash whole process
-
   throw new Error("⚠️  Couldn't find .env file  ⚠️");
 }
 
-export default {
+const config = {
   /**
    * Your favorite port
    */
@@ -30,7 +28,7 @@ export default {
    * Used by winston logger
    */
   logs: {
-    level: process.env.LOG_LEVEL || 'silly',
+    level: process.env.LOG_LEVEL || "silly"
   },
 
   /**
@@ -39,27 +37,30 @@ export default {
   agenda: {
     dbCollection: process.env.AGENDA_DB_COLLECTION,
     pooltime: process.env.AGENDA_POOL_TIME,
-    concurrency: parseInt(process.env.AGENDA_CONCURRENCY, 10),
+    concurrency: parseInt(process.env.AGENDA_CONCURRENCY, 10)
   },
 
   /**
    * Agendash config
    */
   agendash: {
-    user: 'agendash',
-    password: '123456'
+    user: "admin",
+    password: "admin"
   },
   /**
    * API configs
    */
   api: {
-    prefix: '/api',
+    prefix: "/api"
   },
   /**
    * Mailgun email credentials
    */
   emails: {
-    apiKey: 'API key from mailgun',
-    domain: 'Domain Name from mailgun'
+    apiKey: "API key from mailgun",
+    domain: "Domain Name from mailgun"
   }
+};
+module.exports = {
+  config
 };
