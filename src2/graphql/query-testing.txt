@@ -48,3 +48,14 @@ mutation{
      subscriptionId{
     _id
      }}}
+
+
+     **** create one user with privilage of admin or not ****
+     mutation{
+  createUser(userInput:{email:"ahmed",password:"123456",isAdmin:true}){
+    _id
+    email
+    password
+    isAdmin
+  }
+}

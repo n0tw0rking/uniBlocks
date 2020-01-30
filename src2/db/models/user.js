@@ -10,6 +10,10 @@ const schema = new Schema({
     type: String,
     require: true,
   },
+  isAdmin: {
+    type: Boolean,
+    default: false,
+  },
   userMesg: [
     {
       type: Schema.Types.ObjectId,
@@ -20,6 +24,12 @@ const schema = new Schema({
     {
       type: Schema.Types.ObjectId,
       ref: 'Subscription',
+    },
+  ],
+  adminBlock: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Block',
     },
   ],
 });

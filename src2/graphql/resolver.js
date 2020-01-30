@@ -45,7 +45,7 @@ module.exports = {
     // }
     try {
       //need change the _id by the req.userId
-      const user = await User.findById({ _id: '5e315ae504442446af8ed9cc' })
+      const user = await User.findById({ _id: '5e32954c2caab0519d885385' })
         .populate('userMesg')
         .populate({
           path: 'userSubscription',
@@ -101,6 +101,7 @@ module.exports = {
         const user = new User({
           email: args.userInput.email,
           password: hashedPassword,
+          isAdmin: args.userInput.isAdmin,
         });
         console.log(user);
         return user.save();
@@ -255,6 +256,16 @@ module.exports = {
       }
     } catch (err) {
       console.log(err);
+    }
+  },
+  addAdminToBlock: async args => {
+    const admin = await User.findOne({ email: args.email });
+    if (!admin.isAdmin) {
+      throw new Error('The Email Provided is not an Admin user');
+    }
+    const block = await Block.findOne({ name: args.blockName });
+    if (!block) {
+      throw new Error('The Block name is not an exist  user');
     }
   },
 };

@@ -15,6 +15,10 @@ const schema = new Schema({
       ref: 'Subscription',
     },
   ],
+  blockAdmin: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+  },
 });
 
 module.exports = mongoose.model('Block', schema);

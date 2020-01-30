@@ -6,6 +6,7 @@ module.exports = buildSchema(`
     input UserInput {
       email : String!
       password : String!
+      isAdmin: Boolean
     }
     input BlockInput{
         name : String!
@@ -25,6 +26,7 @@ module.exports = buildSchema(`
     password : String 
     userMesg : [Message!]!
     userSubscription :[Subscription!]!
+    isAdmin : Boolean!
 
     }
     
@@ -81,6 +83,7 @@ module.exports = buildSchema(`
         addSub(email:String!):User!
         addBalance(value : Float!): Balance!
         addSerToSub(serviceName:String!,subName:String!): Service!
+        addAdminToBlock(blockName:String!,email:String!):Block!
         
 
         }
