@@ -23,24 +23,7 @@ mutation{
     _id
   }}}
 
-
-**** service query ****
-  query{
-  oneService(name:"water"){
-  _id
-  name
-  subscriptionId{
-  _id
-  name
-  user{
-  _id
-  }
-  block{
-  _id
-  }}}}
-
-
-      **** add service to already exsisting subscription ***
+  **** add service to already exsisting subscription ***
     mutation{
     addSerToSub(serviceName:"cleaning",subName:"CCC"){
      _id
@@ -59,3 +42,25 @@ mutation{
     isAdmin
   }
 }
+
+
+
+**** service query ****
+  query{
+  oneService(name:"water"){
+  _id
+  name
+  subscriptionId{
+  _id
+  name
+  user{
+  _id
+  }
+  block{
+  _id
+  }}}}
+
+
+   **** user query ****
+
+   

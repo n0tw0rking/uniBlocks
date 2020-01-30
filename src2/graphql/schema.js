@@ -27,6 +27,8 @@ module.exports = buildSchema(`
     userMesg : [Message!]!
     userSubscription :[Subscription!]!
     isAdmin : Boolean!
+    isSuperAdmin : Boolean!
+    adminBlock :[Block!]!
 
     }
     
@@ -35,6 +37,7 @@ module.exports = buildSchema(`
         name : String!
         location :String 
         userSubscription:[Subscription!]!
+        blockAdmin:User!
     }
     type Message{
         _id:ID!

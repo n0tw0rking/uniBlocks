@@ -82,7 +82,11 @@ module.exports = {
     if (!isEqual) {
       throw new Error(' password is incorrect  ');
     }
-    const token = jwt.sign({ userId: user._id, email: user.email }, 'superpasswordkey', { expiresIn: '1h' });
+    const token = jwt.sign(
+      { userId: user._id, email: user.email, isAdmin: user.isAdmin, isSuperAdmin: user.isSuperAdmin },
+      'superpasswordkey',
+      { expiresIn: '1h' },
+    );
     return { userId: user._id, token: token, tokenExpriration: 1 };
   },
   // create user /////
@@ -95,7 +99,7 @@ module.exports = {
         if (user) {
           throw new Error('user exists already');
         }
-        return bcrypt.hash(args.userInput.password, 10);
+        return bcrypt.hash(args.userInput.password, 12);
       })
       .then(hashedPassword => {
         const user = new User({
@@ -258,14 +262,36 @@ module.exports = {
       console.log(err);
     }
   },
+  // add admin to block by his email and the block name
+
   addAdminToBlock: async args => {
-    const admin = await User.findOne({ email: args.email });
-    if (!admin.isAdmin) {
-      throw new Error('The Email Provided is not an Admin user');
-    }
-    const block = await Block.findOne({ name: args.blockName });
-    if (!block) {
-      throw new Error('The Block name is not an exist  user');
+    try {
+      const block = await Block.findOne({ name: args.blockName });
+      if (!block) {
+        throw new Error('The Block name is not an exist  user');
+      }
+      try {
+        const user = await User.findOne({ email: args.email });
+        if (!user.isAdmin) {
+          throw new Error('The Email Provided is not an Admin user');
+        }
+        block.blockAdmin = user._id;
+        user.adminBlock = block._id;
+        try {
+          await user.save();
+          try {
+            return await block.save();
+          } catch (err) {
+            console.log(err);
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    } catch (err) {
+      console.log(err);
     }
   },
 };

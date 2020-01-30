@@ -23,5 +23,7 @@ module.exports = (req, res, next) => {
   }
   req.isAuth = true;
   req.userId = decodedToken.userId;
+  req.isAdmin = decodedToken.isAdmin;
+  req.isSuperAdmin = decodedToken.isSuperAdmin;
   next();
 };

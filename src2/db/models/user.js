@@ -14,6 +14,10 @@ const schema = new Schema({
     type: Boolean,
     default: false,
   },
+  isSuperAdmin: {
+    type: Boolean,
+    default: false,
+  },
   userMesg: [
     {
       type: Schema.Types.ObjectId,
