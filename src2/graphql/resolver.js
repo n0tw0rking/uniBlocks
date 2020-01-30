@@ -87,13 +87,22 @@ module.exports = {
       'superpasswordkey',
       { expiresIn: '1h' },
     );
-    return { userId: user._id, token: token, tokenExpriration: 1 };
+    return {
+      userId: user._id,
+      token: token,
+      tokenExpriration: 1,
+      isAdmin: user.isAdmin,
+      isSuperAdmin: user.isSuperAdmin,
+    };
   },
   // create user /////
   createUser: (args, req) => {
-    // if (!req.isAuth) {
-    //   throw new Error('Unauthenticated');
-    // }
+    if (!req.isAuth) {
+      throw new Error('Unauthenticated');
+    } else if (!req.isAdmin) {
+      throw new Error('not allowed to create user with user privilege');
+    }
+
     return User.findOne({ email: args.userInput.email })
       .then(user => {
         if (user) {
@@ -105,8 +114,10 @@ module.exports = {
         const user = new User({
           email: args.userInput.email,
           password: hashedPassword,
-          isAdmin: args.userInput.isAdmin,
         });
+        if (req.isSuperAdmin) {
+          user.isAdmin = args.userInput.isAdmin;
+        }
         console.log(user);
         return user.save();
       })

@@ -6,7 +6,7 @@ module.exports = buildSchema(`
     input UserInput {
       email : String!
       password : String!
-      isAdmin: Boolean
+      isAdmin : Boolean
     }
     input BlockInput{
         name : String!
@@ -48,6 +48,8 @@ module.exports = buildSchema(`
         userId : ID !
         token : String!
         tokenExpriration : Int!
+        isAdmin : Boolean!
+        isSuperAdmin : Boolean!
     }
     type Balance {
         _id : ID!
