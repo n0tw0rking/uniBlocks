@@ -62,5 +62,9 @@ mutation{
 
 
    **** user query ****
-
-   
+  query{
+   login(userInput:{email:"faredmohamed",password:"123456"}){
+    token
+    userId
+    isAdmin
+    isSuperAdmin}}

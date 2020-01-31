@@ -91,6 +91,8 @@ module.exports = {
       userId: user._id,
       token: token,
       tokenExpriration: 1,
+      // isAdmin: user.isAdmin, isSuperAdmin: user.isSuperAdmin, need to be deleted in deployment
+      //for security
       isAdmin: user.isAdmin,
       isSuperAdmin: user.isSuperAdmin,
     };
