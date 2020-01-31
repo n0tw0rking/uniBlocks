@@ -1,7 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
+const createUser = gql`
+  mutation createUser($email: String!, $password: String!, $isAdmin: Boolean!) {
+    createUser(userInput: { email: $email, password: $password, isAdmin: $isAdmin }) {
+      _id
+    }
+  }
+`;
 
+const createService = gql`
+  mutation createService($name: String!) {
+    createService(name: $name) {
+      _id
+      name
+      subscriptionId {
+        _id
+      }
+    }
+  }
+`;
 @Component({
   selector: 'app-test',
   templateUrl: './test.component.html',
@@ -12,26 +30,25 @@ export class TestComponent implements OnInit {
 
   ngOnInit() {
     this.apollo
-      .watchQuery<any>({
-        query: gql`
-          query {
-            login(userInput: { email: "faredmohamed", password: "123456" }) {
-              token
-              userId
-              isAdmin
-              isSuperAdmin
-            }
-          }
-        `,
+      .mutate({
+        mutation: createService,
         variables: {
-          name: 'water',
+          name: 'power',
+          email: 'reem',
+          password: '123456',
+          isAdmin: true,
         },
       })
-      .valueChanges.subscribe(result => {
-        // this._id = result.data._id;
-        // this.isAdmin = result.data.isAdmin;
-        // this.email = result.data.email;
-        console.log(result.data);
-      });
+      .subscribe(
+        result => {
+          // this._id = result.data._id;
+          // this.isAdmin = result.data.isAdmin;
+          // this.email = result.data.email;
+          console.log(result.data);
+        },
+        error => {
+          console.log('there was an error sending the query', error);
+        },
+      );
   }
 }
