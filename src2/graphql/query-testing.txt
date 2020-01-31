@@ -68,3 +68,22 @@ mutation{
     userId
     isAdmin
     isSuperAdmin}}
+
+
+
+
+***** apollo client query with input varibale ****
+this.apollo
+      .watchQuery<any>({
+        query: gql`
+          query($name: String!) {
+            oneService(name: $name) {
+              _id
+              name
+            }
+          }
+        `,
+        variables: {
+          name: 'water',
+        },
+      })

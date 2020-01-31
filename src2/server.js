@@ -6,14 +6,15 @@ const mongoose = require('mongoose');
 const graphiqlShema = require('./graphql/schema');
 const graphiqlResolver = require('./graphql/resolver');
 const isAuth = require('./middleware/is-auth');
+const cors = require('cors');
+
 // const bcrypt = require('bcrypt');
 
 require('dotenv').config();
 
 const app = express();
-
+app.use(cors());
 app.use(bodyParser.json());
-
 app.use(isAuth);
 
 app.use(
