@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { TestComponent } from './test/test/test.component';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
+import { Apollo } from 'apollo-angular';
 
 @NgModule({
   declarations: [AppComponent, TestComponent],

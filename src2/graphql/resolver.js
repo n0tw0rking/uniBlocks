@@ -6,6 +6,7 @@ const Subscription = require('../db/models/subscription');
 const Service = require('../db/models/service');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { GraphQLError } = require('graphql');
 module.exports = {
   /*
 		find one oneSubscription and list his balance / user / block
@@ -43,6 +44,7 @@ module.exports = {
     // if (!req.isAuth) {
     //   throw new Error('Unauthenticated');
     // }
+
     try {
       //need change the _id by the req.userId
       const user = await User.findById({ _id: '5e32954c2caab0519d885385' })
@@ -76,6 +78,7 @@ module.exports = {
   login: async args => {
     const user = await User.findOne({ email: args.userInput.email });
     if (!user) {
+      // throw new GraphQLError(' user does not exist ');
       throw new Error(' user does not exist ');
     }
     const isEqual = await bcrypt.compare(args.userInput.password, user.password);
@@ -85,12 +88,12 @@ module.exports = {
     const token = jwt.sign(
       { userId: user._id, email: user.email, isAdmin: user.isAdmin, isSuperAdmin: user.isSuperAdmin },
       'superpasswordkey',
-      { expiresIn: '1h' },
+      { expiresIn: '5h' },
     );
     return {
       userId: user._id,
       token: token,
-      tokenExpriration: 1,
+      tokenExpriration: 5,
       // isAdmin: user.isAdmin, isSuperAdmin: user.isSuperAdmin, need to be deleted in deployment
       //for security
       isAdmin: user.isAdmin,
@@ -99,9 +102,11 @@ module.exports = {
   },
   // create user /////
   createUser: (args, req) => {
+    console.log(req.isAuth);
+    console.log(req.isSuperAdmin, '@@@@@');
     if (!req.isAuth) {
       throw new Error('Unauthenticated');
-    } else if (!req.isAdmin) {
+    } else if (!req.isAdmin && !req.isSuperAdmin) {
       throw new Error('not allowed to create user with user privilege');
     }
 
@@ -120,7 +125,7 @@ module.exports = {
         if (req.isSuperAdmin) {
           user.isAdmin = args.userInput.isAdmin;
         }
-        console.log(user);
+        // console.log(user);
         return user.save();
       })
       .then(user => {

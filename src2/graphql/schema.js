@@ -70,25 +70,25 @@ module.exports = buildSchema(`
         subscriptionId:[Subscription!]!
     }
     type RootQuery {
-        oneUser:User!
-        login(userInput :UserInput) :  AuthData!
-        message: [Message!]!
-        oneSubscription(name:String!) : Subscription! 
-        service:[Service!]!
-        oneService(name:String!):Service!
-        oneBlock(name:String!):Block!
+        oneUser:User
+        login(userInput :UserInput) :  AuthData
+        message: [Message!]
+        oneSubscription(name:String!) : Subscription
+        service:[Service!]
+        oneService(name:String!):Service
+        oneBlock(name:String!):Block
     }
     type MutationQuery{
 
-        createUser(userInput :UserInput ): User!
-        createBlock(blockInput : BlockInput) : Block! 
-        createMessage(messageInput : MessageInput):Message!
-        createService (name :String!):Service!
-        createSub(subInput:SubInput) : Subscription!
-        addSub(email:String!):User!
-        addBalance(value : Float!): Balance!
-        addSerToSub(serviceName:String!,subName:String!): Service!
-        addAdminToBlock(blockName:String!,email:String!):Block!
+        createUser(userInput :UserInput ): User
+        createBlock(blockInput : BlockInput) : Block
+        createMessage(messageInput : MessageInput):Message
+        createService (name :String!):Service
+        createSub(subInput:SubInput) : Subscription
+        addSub(email:String!):User
+        addBalance(value : Float!): Balance
+        addSerToSub(serviceName:String!,subName:String!): Service
+        addAdminToBlock(blockName:String!,email:String!):Block
         
 
         }

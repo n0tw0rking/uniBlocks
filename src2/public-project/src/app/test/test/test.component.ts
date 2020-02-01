@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Apollo } from 'apollo-angular';
+
 import gql from 'graphql-tag';
+
 const createUser = gql`
-  mutation createUser($email: String!, $password: String!, $isAdmin: Boolean!) {
+  mutation createUser($email: String!, $password: String!, $isAdmin: Boolean) {
     createUser(userInput: { email: $email, password: $password, isAdmin: $isAdmin }) {
       _id
     }
@@ -31,13 +33,13 @@ export class TestComponent implements OnInit {
   ngOnInit() {
     this.apollo
       .mutate({
-        mutation: createService,
+        mutation: createUser,
         variables: {
-          name: 'power',
           email: 'reem',
           password: '123456',
           isAdmin: true,
         },
+        errorPolicy: 'all',
       })
       .subscribe(
         result => {
@@ -45,9 +47,10 @@ export class TestComponent implements OnInit {
           // this.isAdmin = result.data.isAdmin;
           // this.email = result.data.email;
           console.log(result.data);
+          console.log(result.errors[0].message);
         },
-        error => {
-          console.log('there was an error sending the query', error);
+        err => {
+          console.log(err);
         },
       );
   }
