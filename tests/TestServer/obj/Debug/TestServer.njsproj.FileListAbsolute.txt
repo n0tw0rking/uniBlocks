@@ -1,0 +1,2 @@
+C:\Users\pskt\source\repos\uniBlocks\BackendServer\TestServer\obj\Debug\TestServer.njsprojAssemblyReference.cache
+C:\Users\pskt\source\repos\uniBlocks\BackendServer\TestServer\bin\Microsoft.NodejsTools.WebRole.dll
