@@ -6,8 +6,17 @@ import express from 'express';
 
 import Logger from './loaders/logger';
 
+import express_graphql from 'express-graphql';
+import { buildSchema } from 'graphql';
+import bcrypt from 'bcrypt';
+
 async function startServer() {
   const app = express();
+  app.get('/', (req, res, next) => {
+    res.json('hello world ');
+  });
+
+ 
 
   /**
    * A little hack here
